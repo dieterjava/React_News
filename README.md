@@ -1,5 +1,31 @@
 # react-zva6uf
 
+
+index.html:
+<div id="root"></div>
+
+index.js:
+
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+
+import "./style.css";
+
+class App extends React.Component {
+....
+  render() {
+    return (
+      <div>
+.... this will be shown
+    </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+-------------
+
 Created a simple React example
 
 Should read some news in json format from newsapi.org

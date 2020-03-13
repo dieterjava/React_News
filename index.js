@@ -8,13 +8,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: "",
-      json_obj: {
-        status: "ok",
-        source: "time",
-        sortBy: "top",
-        articles: Array[30],
-        jsonString: " "
-      }
+      json_objs: [] 
+      // {
+ //       status: "ok",
+ //        source: "time",
+  //       sortBy: "top",
+   //      articles: Array[30],
+  //      jsonString: " "
+  //    }
     };
   }
 
@@ -31,9 +32,10 @@ class App extends React.Component {
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          this.state.json_obj = JSON.parse(xhr.responseText);
-          console.log(this.state.json_obj);
-          this.state.jsonString = JSON.stringify(this.state.json_obj);
+          this.state.json_objs = JSON.parse(xhr.responseText);
+
+          console.log(this.state.json_objs[0].title);
+      //    this.state.jsonString = JSON.stringify(this.state.json_objs);
        //   console.log(jsonString);
           status = true;
         } else {
@@ -49,19 +51,24 @@ class App extends React.Component {
     console.log("sent");
   }
 /*
-        <p> status: {this.state.json_obj.status}</p>
-        <p> source: {this.state.json_obj.source}</p>
-        <ul> {this.state.json_obj.articles}</ul>
+        <p> status: {this.state.json_objs.status}</p>
+        <p> source: {this.state.json_objs.source}</p>
+        <ul> {this.state.json_objs.articles}</ul>
+                News from <a href="https://newsapi.org"> newsapi.org </a> <br/>
+        Posts from <a href="https://jsonplaceholder.typicode.com/posts"> https://jsonplaceholder.typicode.com/posts</a> 
 */
+
   render() {
     console.log("rendering");
     return (
       <div>
-        News from <a href="https://newsapi.org"> newsapi.org </a> <br/>
-        Posts from <a href="https://jsonplaceholder.typicode.com/posts"> https://jsonplaceholder.typicode.com/posts</a> 
-{JSON.stringify(this.state.jsonString)}
-
-      </div>
+      asfadsf
+    <ul>
+      {this.state.json_objs.map((value, index) => {
+        return <li key={index}>{value}</li>
+      })}
+    </ul>
+    </div>
     );
   }
 }
