@@ -32,7 +32,7 @@ class App extends React.Component {
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          this.state.json_objs = JSON.parse(xhr.responseText);
+          this.setState({json_objs : JSON.parse(xhr.responseText)});
 
           console.log(this.state.json_objs[0].title);
       //    this.state.jsonString = JSON.stringify(this.state.json_objs);
