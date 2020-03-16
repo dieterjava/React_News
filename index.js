@@ -63,12 +63,15 @@ class App extends React.Component {
     console.log(this.state.json_objs);
     return (
       <div>
-      asfadsf
-    <ul>
-      {this.state.json_objs.map(( id, title ) => {
-        return <li key={id}>item {title}</li>
-      })}
-    </ul>
+      <ul>
+          {this.state.json_objs.map(item => (
+            <li key={item.id}>
+            Id: {item.id} <br/>
+            Title: {item.title} <br/>
+body: {item.body}
+            </li>
+          ))}
+        </ul>
     </div>
     );
   }
