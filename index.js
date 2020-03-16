@@ -7,6 +7,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      mySubject: "bitcoin",
+      subjects: ["java","cloud", "docker", "linux"],
+      subjectIndex: 0,
       data: "",
       json_objs: [ {userId: ' ', id : '1', title : 'dsfsd', body : '2312'}],
       news_api: {"status":"ok","source":"time","sortBy":"top","articles":
@@ -31,12 +34,15 @@ class App extends React.Component {
   componentWillMount() {
     var xhr = new XMLHttpRequest();
     var status = false;
+        var URL = "https://newsapi.org/v2/everything?q=cloud&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     xhr.open(
       "GET",
     //  "https://jsonplaceholder.typicode.com/posts",
-     "https://newsapi.org/v1/articles?source=time&sortBy=latest&apiKey=1d825f6378f2460d8bcf7edc35915e0f",
+    // "https://newsapi.org/v1/articles?source=bild&sortBy=latest&apiKey=1d825f6378f2460d8bcf7edc35915e0f",
+    URL,
       true
     );
+        console.log('url ' + URL);
     xhr.onload = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -68,6 +74,7 @@ class App extends React.Component {
   }
 /*
 // works
+<hr/>
       <ul>
           {this.state.json_objs.map(item => (
             <li key={item.id}>
@@ -77,7 +84,9 @@ body: {item.body}
             </li>
           ))}
         </ul>
-// does not work, no id  field
+    </div>
+
+// works too
 articles is not an array 
       <ul>
           {this.state.news_api.articles.map(item => (
@@ -111,18 +120,69 @@ description: {item.description}
             </li>
           ))}
         </ul>
-<hr/>
-      <ul>
-          {this.state.json_objs.map(item => (
-            <li key={item.id}>
-            Id: {item.id} <br/>
-            Title: {item.title} <br/>
-body: {item.body}
-            </li>
-          ))}
-        </ul>
-    </div>
+ </div>
     );
+  }
+
+
+ onClick() {
+ 
+   getNews(getSubject());
+
+}
+
+getSubject() {
+  return subject.value;
+}
+
+getNews(subject) 
+{
+    var xhr = new XMLHttpRequest();
+    var status = false;
+    var mySubject = getSubject();
+   var URL = "https://newsapi.org/v2/everything?q=" + mySubject + "&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
+//    var URL = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
+    console.log('url ' + URL);
+    xhr.open(
+      "GET",
+    //  "https://jsonplaceholder.typicode.com/posts",
+    // "https://newsapi.org/v1/articles?source=bild&sortBy=latest&apiKey=1d825f6378f2460d8bcf7edc35915e0f",
+    // https://newsapi.org/v2/everything?q=bitcoin&apiKey=1d825f6378f2460d8bcf7edc35915e0f
+
+      URL,
+      true
+    );
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+      
+      // this.setState({json_objs : JSON.parse(xhr.responseText)});
+         this.setState({news_api : JSON.parse(xhr.responseText)});
+       //  this.setState({myArticles : JSON.parse(this.news_api)});
+
+        // console.log(this.state.json_objs);
+    console.log('url ' + URL);
+      this.setState({myArticles : this.state.news_api.articles });
+
+
+       //  debugger;
+      //    this.state.jsonString = JSON.stringify(this.state.json_objs);
+       //   console.log(jsonString);
+          status = true;
+        } else {
+          console.error(xhr.statusText);
+        }
+      }
+    }.bind(this);
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText);
+    };
+    console.log("sending");
+    xhr.send(null);
+    console.log("sent");
   }
 }
 ReactDOM.render(<App />, document.getElementById("root"));
+
+// var button = document.querySelector('button');
+// button.addEventListener('click', this.App.onClick());
