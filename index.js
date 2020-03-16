@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: "",
-      json_objs: [] 
+      json_objs: [ {userId: ' ', id : '1', title : 'dsfsd', body : '2312'}]
       // {
  //       status: "ok",
  //        source: "time",
@@ -34,7 +34,7 @@ class App extends React.Component {
         if (xhr.status === 200) {
           this.setState({json_objs : JSON.parse(xhr.responseText)});
 
-          console.log(this.state.json_objs[0].title);
+        //  console.log(this.state.json_objs);
       //    this.state.jsonString = JSON.stringify(this.state.json_objs);
        //   console.log(jsonString);
           status = true;
@@ -60,12 +60,13 @@ class App extends React.Component {
 
   render() {
     console.log("rendering");
+    console.log(this.state.json_objs);
     return (
       <div>
       asfadsf
     <ul>
-      {this.state.json_objs.map((value, index) => {
-        return <li key={index}>{value}</li>
+      {this.state.json_objs.map(( id, title ) => {
+        return <li key={id}>item {title}</li>
       })}
     </ul>
     </div>
