@@ -40,6 +40,7 @@ class App extends React.Component {
   componentWillMount() {
     var xhr = new XMLHttpRequest();
     var status = false;
+    var URL =  "https://newsapi.org/v2/everything?q=software&sortBy=publishedAt&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     // var URL = "https://newsapi.org/v2/everything?q=" + this.state.mySubject + "&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     //  var URL = "https://newsapi.org/v1/articles?source=bild&sortBy=latest&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     xhr.open(
@@ -55,8 +56,8 @@ class App extends React.Component {
         if (xhr.status === 200) {
 
           // this.setState({json_objs : JSON.parse(xhr.responseText)});
-          this.setState({ news_api: JSON.parse(xhr.responseText) });
-          //  this.setState({myArticles : JSON.parse(this.news_api)});
+           this.setState({ news_api: JSON.parse(xhr.responseText) });
+          // this.setState({myArticles : JSON.parse(this.news_api)});
 
           // console.log(this.state.json_objs);
 
@@ -162,6 +163,7 @@ class App extends React.Component {
     var xhr = new XMLHttpRequest();
     var status = false;
     var mySubject = getSubject();
+        var URL =  "https://newsapi.org/v2/everything?q=software&sortBy=publishedAt&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     //  var URL = "https://newsapi.org/v2/everything?q=" + mySubject + "&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     //    var URL = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=1d825f6378f2460d8bcf7edc35915e0f";
     console.log('url ' + URL);
@@ -179,8 +181,8 @@ class App extends React.Component {
         if (xhr.status === 200) {
 
           // this.setState({json_objs : JSON.parse(xhr.responseText)});
-          this.setState({ news_api: JSON.parse(xhr.responseText) });
-          //  this.setState({myArticles : JSON.parse(this.news_api)});
+           this.setState({ news_api: JSON.parse(xhr.responseText) });
+          // this.setState({myArticles : JSON.parse(this.news_api)});
 
           // console.log(this.state.json_objs);
           console.log('url ' + URL);
